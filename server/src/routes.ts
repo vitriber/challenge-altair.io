@@ -3,7 +3,7 @@ import express from 'express';
 export const routes = express.Router();
 
 routes.get('/grade', async (req, res) => {
-    function generateRandomAlphabetMatrix(): string[][] {
+    function generateRandomAlphabetMatrix(letter?: string): string[][] {
         const matrix: string[][] = [];
         
         for (let i = 0; i < 10; i++) {
@@ -15,7 +15,24 @@ routes.get('/grade', async (req, res) => {
             }
             matrix.push(row);
         }
-        
+
+        if (letter) {
+            // Count total elements and calculate 20% of it
+            const totalElements = matrix.length * matrix[0].length;
+            const twentyPercent = Math.floor(totalElements * 0.2);
+    
+            // Randomly select 20% of the matrix and replace with the provided letter
+            let count = 0;
+            while (count < twentyPercent) {
+                const randomRowIndex = Math.floor(Math.random() * matrix.length);
+                const randomColIndex = Math.floor(Math.random() * matrix[0].length);
+                if (matrix[randomRowIndex][randomColIndex] !== letter) {
+                    matrix[randomRowIndex][randomColIndex] = letter;
+                    count++;
+                }
+            }
+        }
+    
         return matrix;
     }
 
@@ -48,7 +65,9 @@ routes.get('/grade', async (req, res) => {
         return occurrencesFirstChar.toString() + occurrencesSecondChar.toString();
     }
 
-    const randomAlphabetMatrix: string[][] = generateRandomAlphabetMatrix();
+
+    const { character } = req.query;
+    const randomAlphabetMatrix: string[][] = generateRandomAlphabetMatrix(character as string);
     const code = getCode(randomAlphabetMatrix)
 
     return res.status(201).send({
