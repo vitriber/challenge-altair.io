@@ -6,10 +6,15 @@ Payments Page
 
 ## Features
 - Generator a matrix of alphabetic values
-- API to add and get payments
+
+## Bonus Features
+- API to add and get payments and a page to view this payments
+
+Obs: to add this bonus feature is necessary change to branch feat/payment-page and access http://localhost:5173/payment
 
 ## Technologies Used
 - React
+- Vite
 - Node.js
 - Express.js
 - HTML
@@ -47,7 +52,7 @@ Payments Page
     cd ../web
     npm run dev
 
-3. Open your browser and navigate to http://localhost:3000 to view the application.
+3. Open your browser and navigate to http://localhost: with a port generate to view the application.
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
