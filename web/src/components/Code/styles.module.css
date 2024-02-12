@@ -1,0 +1,32 @@
+.containerCode {
+    display: flex;
+    justify-content: center;
+}
+
+.contentCode {
+    display: flex;
+    flex-direction: column;
+}
+
+.live {
+    display: flex;
+    padding: 0.2rem;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block; 
+    margin-right: 0.4rem;
+}
+
+.code {
+    border: 1px solid black;
+    border-radius: 0.2rem;
+    padding: 1rem 4rem;
+    text-transform: uppercase;
+}
