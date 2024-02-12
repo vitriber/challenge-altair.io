@@ -34,7 +34,34 @@ export const PaymentPage = () => {
         })} catch (e) {
             console.log(e);
         }
+    }
 
+
+    const getPayments = async () => {
+        try {
+            api.get('payments', {
+            }).then(response => {
+                const payments = response.data;
+                setPayments(payments);
+        })} catch (e) {
+            console.log(e);
+        }
+    }
+
+
+    const addPayment = async () => {
+        try {
+            api.post('payments', {
+                name: paymentName,
+                amount,
+                code,
+                grid 
+            }).then(response => {
+                const payments = response.data;
+                setPayments(payments);
+        })} catch (e) {
+            console.log(e);
+        }
     }
 
     const handleAddPayment = () => {
@@ -47,9 +74,11 @@ export const PaymentPage = () => {
                 grid
             }
         ]);
+        addPayment()
     }
 
     useEffect(() => {
+        getPayments();
         const intervalCall = setInterval(() => {
             getGrid();
         }, 2000);
