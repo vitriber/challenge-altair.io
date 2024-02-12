@@ -2,7 +2,7 @@ import express from 'express';
 
 export const routes = express.Router();
 
-routes.get('/grade', async (req, res) => {
+routes.get('/grid', async (req, res) => {
     function generateRandomAlphabetMatrix(letter?: string): string[][] {
         const matrix: string[][] = [];
         
