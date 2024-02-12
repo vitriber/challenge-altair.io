@@ -1,0 +1,110 @@
+.paymentInput {
+    display: flex;
+    height: 6.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem 4rem;
+}
+
+.paymentName {
+    display: flex;
+    flex-direction: column;
+
+    padding-left: 4rem;
+
+    p {
+       padding: 0.2rem 0;   
+       color: var(--blue-100); 
+       text-transform: uppercase;
+       font-size: 0.7rem;
+       font-weight: 500;
+    }
+
+    input {
+        border: 1px solid var(--gray-200);
+        padding: 0.6rem;
+        border-radius: 0.4rem;
+        outline: none;
+    }
+
+    input::placeholder {
+        color: var(--gray-200);
+        font-size: 0.8rem;
+    }
+}
+
+.amount {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 2rem;
+
+    p {
+       padding: 0.2rem 0;   
+       color: var(--blue-100); 
+       text-transform: uppercase;
+       font-size: 0.7rem;
+       font-weight: 500;
+    }
+
+    input {
+        border: 1px solid var(--gray-200);
+        padding: 0.6rem;
+        border-radius: 0.4rem;
+        outline: none;
+    }
+
+    input::placeholder {
+        color: var(--gray-200);
+        font-size: 0.8rem;
+    }
+}
+
+.addPayment {
+    margin-top: 1.3rem;
+    padding: 0.6rem 1rem;
+    text-transform: uppercase;
+    background: var(--blue-100);
+    color: var(--gray-50);
+    border-radius: 0.2rem;
+	border: none;
+	outline: inherit;
+}
+
+.paymentList {
+    display: flex;
+    padding: 4rem 8rem;
+    flex-direction: column;
+
+    table,
+      th,
+      td {
+        padding: 1rem 3rem;
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+    tbody tr th {
+        color: var(--blue-100); 
+        font-weight: 400;
+    }
+    tbody tr th:first-child,
+    tbody tr td:first-child {
+        width: 80em;
+        min-width: 80em;
+        max-width: 80em;
+        word-break: break-all;
+        text-align: start;
+    }
+}
+
+
+.paymentTitle {
+    color: var(--blue-100); 
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding-bottom: 0.6rem;
+}
