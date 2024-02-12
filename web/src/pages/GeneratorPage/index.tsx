@@ -8,6 +8,9 @@ import { Code } from '../../components/Code';
 export const GeneratorPage = () => {
     const [grid, setGrid] = useState<string[][]>();
     const [code, setCode] = useState<string>();
+    const [character, setCharacter] = useState<string>();
+    const [intervalCall, setIntervalCall] = useState<number>();
+    const [isChangeCharacter, setIsChangeCharacter] = useState<boolean>(false);
 
     const getGrid = async (character?: string) => {
         try {
@@ -28,24 +31,41 @@ export const GeneratorPage = () => {
 
     const handleChangeCharacter = (value: string) => {
         if(value) {
-            getGrid(value);
+            setCharacter(value)
         }
     }
 
+    const handleGenerateGrid = (character?: string) => {
+        clearInterval(intervalCall);
+        setIntervalCall(setInterval(() => {
+            character ? getGrid(character): getGrid();
+        }, 2000))
+    }
+
+    const handleBlockCharacter = () => {
+        setIsChangeCharacter(true);
+
+        setTimeout(function(){ 
+            setIsChangeCharacter(false); 
+        }, 4000);
+    }
+
     useEffect(() => {
-        const intervalCall = setInterval(() => {
-            getGrid();
-        }, 2000);
-        return () => {
-          clearInterval(intervalCall);
-        };
-      }, []);
+        if(character) {
+            clearInterval(intervalCall);
+            handleBlockCharacter()
+            handleGenerateGrid(character)
+        }
+    }, [character])
 
     return (
         <>
-            <GeneratorPageHeader getGrid={getGrid} handleChangeCharacter={handleChangeCharacter}/>
+            <GeneratorPageHeader 
+                isChangeCharacter={isChangeCharacter}
+                handleGenerateGrid={handleGenerateGrid} 
+                handleChangeCharacter={handleChangeCharacter}/>
             <Grid grid={grid} />
-            <Code code={code} />
+            {code && <Code code={code} />}
         </>
     )
 }
