@@ -4,6 +4,7 @@ import { api } from '../../services/api';
 import { GeneratorPageHeader } from '../../components/GeneratorPageHeader';
 import { Grid } from '../../components/Grid';
 import { Code } from '../../components/Code';
+import { socket } from '../../services/socket';
 
 export const GeneratorPage = () => {
     const [grid, setGrid] = useState<string[][]>();
@@ -11,6 +12,33 @@ export const GeneratorPage = () => {
     const [character, setCharacter] = useState<string>();
     const [intervalCall, setIntervalCall] = useState<number>();
     const [isChangeCharacter, setIsChangeCharacter] = useState<boolean>(false);
+
+    const [isConnected, setIsConnected] = useState(socket.connected);
+
+    useEffect(() => {
+        function onConnect() {
+          setIsConnected(true);
+        }
+    
+        function onDisconnect() {
+          setIsConnected(false);
+        }
+    
+        function onCodeEvent(value: string) {
+          setCode(value);
+        }
+    
+        socket.on('connection', onConnect);
+        socket.on('disconnect', onDisconnect);
+        socket.on('code', onCodeEvent);
+    
+        return () => {
+          socket.off('connection', onConnect);
+          socket.off('disconnect', onDisconnect);
+          socket.off('code', onCodeEvent);
+        };
+      }, []);
+    
 
     const getGrid = async (character?: string) => {
         try {
