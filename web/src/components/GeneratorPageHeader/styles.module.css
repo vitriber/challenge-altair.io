@@ -3,14 +3,12 @@
     height: 6.5rem;
     justify-content: space-around;
     align-items: center;
-    padding: 2rem 4rem;
+    padding: 2rem 16rem;
 }
 
 .character {
     display: flex;
     flex-direction: column;
-
-    padding: 0 4rem;
 
     p {
        padding: 0.2rem 0;   
