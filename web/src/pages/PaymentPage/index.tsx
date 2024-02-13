@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Code } from "../../components/Code";
-
-import styles from './styles.module.css'
 import { api } from "../../services/api";
-
+import { PaymentInput } from "../../components/PaymentInput";
+import { PaymentList } from "../../components/PaymentList";
 
 export interface Payment {
     name?: string;
@@ -35,8 +34,6 @@ export const PaymentPage = () => {
             console.log(e);
         }
     }
-
-
     const getPayments = async () => {
         try {
             api.get('payments', {
@@ -47,7 +44,6 @@ export const PaymentPage = () => {
             console.log(e);
         }
     }
-
 
     const addPayment = async () => {
         try {
@@ -90,49 +86,8 @@ export const PaymentPage = () => {
     return (
         <>
             <Code code={code} />
-            <div className={styles.paymentInput}>
-                <div className={styles.paymentName}>
-                    <p>Payment</p>
-                    <input 
-                        placeholder='Payment' 
-                        onChange={(e)=> {setPaymentName(e.target.value)}}
-                    />
-                </div>
-
-                <div className={styles.amount}>
-                    <p>Amount</p>
-                    <input 
-                        placeholder='Amount' 
-                        onChange={(e)=> {setAmount(Number(e.target.value))}}
-                    />
-                </div>
-                
-                <button onClick={() => handleAddPayment()} className={styles.addPayment}>+ ADD</button>
-            </div>
-
-            
-
-            <div className={styles.paymentList}>
-                <p className={styles.paymentTitle}>Payment List</p>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>NAME</th>
-                            <th>AMOUNT</th>
-                            <th>CODE</th>
-                            <th>GRID</th>
-                        </tr>
-                        {payments?.map((row, rowIndex) => (
-                            <tr key={rowIndex}>
-                                <td>{row.name}</td>
-                                <td>{row.amount}</td>
-                                <td>{row.code}</td>
-                                <td>{row.grid?.length}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            <PaymentInput handleAddPayment={handleAddPayment} setAmount={setAmount} setPaymentName={setPaymentName} />
+            <PaymentList payments={payments} />
         </>
     )
 }
