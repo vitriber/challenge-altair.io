@@ -20,6 +20,7 @@ Obs: to add this bonus feature is necessary change to branch feat/payment-page a
 - HTML
 - CSS
 - Typescript
+- Jest
 
 ## Installation
 1. Clone the repository:
@@ -53,6 +54,14 @@ Obs: to add this bonus feature is necessary change to branch feat/payment-page a
     npm run dev
 
 3. Open your browser and navigate to http://localhost:{port_generated} to view the application.
+
+## Test
+
+1. Test the application on backend:
+    ```bash
+    cd ../server
+    npm run test
+
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
